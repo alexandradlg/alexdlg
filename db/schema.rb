@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2018_10_16_090548) do
 
   create_table "stays", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.integer "tenant_id"
     t.integer "studio_id"
     t.datetime "created_at", null: false

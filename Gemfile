@@ -1,49 +1,46 @@
 source 'https://rubygems.org'
 
 # authentification
-#gem 'pundit'
+# gem 'pundit'
 
-
-gem 'money-rails', '~>1'
-gem 'rails'
-gem 'puma'
-gem 'faker'
-gem 'sass-rails'
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jbuilder'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'jquery'
+gem 'coffee-rails'
 gem 'dotenv'
+gem 'faker'
+gem 'jbuilder'
+gem 'jquery'
+gem 'jquery-rails'
+gem 'money-rails', '~>1'
+gem 'puma'
+gem 'rails'
+gem 'sass-rails'
+gem 'turbolinks'
+gem 'uglifier'
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'byebug',  '9.0.6', platform: :mri
-  gem 'rspec-rails'
-  # gem 'pry-rails'
-  gem 'pry-byebug'
-  gem 'database_cleaner'
-  gem "factory_bot_rails"
+  gem 'byebug', '9.0.6', platform: :mri
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'rubocop', require: false
+  gem 'shoulda-matchers'
   gem 'simplecov'
-  gem 'dotenv-rails'
+  gem 'sqlite3'
 end
 
 group :development do
+  gem 'annotate'
   gem "better_errors"
   gem "binding_of_caller"
   gem 'letter_opener'
-  gem 'web-console'
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :test do
   gem 'capybara'
   gem 'poltergeist'
-  gem 'shoulda-matchers'
 end
 
 group :production do
@@ -51,4 +48,5 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+ruby File.read('./.ruby-version')
