@@ -11,7 +11,6 @@
 #
 
 class Studio < ApplicationRecord
-  has_many :tenants, through: :stays
   has_many :stays
   monetize :price_cents
 

@@ -9,6 +9,7 @@
 #
 
 class Tenant < ApplicationRecord
-  has_many :studios, through: :stays
+  has_many :stays
+  has_many :payments
   validates :email, presence: true
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_081731) do
+ActiveRecord::Schema.define(version: 2018_10_17_100652) do
 
   create_table "payments", force: :cascade do |t|
     t.integer "stay_id"
@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(version: 2018_10_17_081731) do
     t.string "guid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tenant_id"
     t.index ["stay_id"], name: "index_payments_on_stay_id"
+    t.index ["tenant_id"], name: "index_payments_on_tenant_id"
   end
 
   create_table "stays", force: :cascade do |t|

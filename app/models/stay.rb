@@ -25,6 +25,7 @@ class Stay < ApplicationRecord
     stay = Stay.last
     (stay.start_date..stay.end_date).group_by(&:beginning_of_month).map { |start, month|
       Payment.create(stay_id: stay.id,
+                     tenant_id: stay.tenant_id,
                      price: (stay.studio.price * month.count) / Time.days_in_month(start.month, start.year),
                      month: start.to_date)
     }

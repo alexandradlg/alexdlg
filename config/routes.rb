@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   root 'stay#index'
   resources :stay, only: [:show]
   get '/payment/:id', to: 'stay#update_payment_status', as: 'update_payment_status'
-  post '/payment/:id', to: 'stay#update_payment_status'
 end
