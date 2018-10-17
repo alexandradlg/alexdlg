@@ -11,6 +11,7 @@ class StayController < ApplicationController
   end
 
   def update_payment_status
+    # get and store the generated guid
     @response = RestClient.get 'https://www.uuidgenerator.net/api/guid'
     payment = Payment.find(params[:id])
     payment.update(guid: @response)

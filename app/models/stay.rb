@@ -22,6 +22,7 @@ class Stay < ApplicationRecord
   after_create :create_waiting_payments
 
   def create_waiting_payments
+    # Creates a waiting payment/month for each booked stay without guid as it is not paid yet
     stay = Stay.last
     (stay.start_date..stay.end_date).group_by(&:beginning_of_month).map { |start, month|
       Payment.create(stay_id: stay.id,
