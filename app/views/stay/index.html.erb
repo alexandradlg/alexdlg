@@ -1,0 +1,28 @@
+<h1>List of stays</h1>
+<div class="container">
+    <table class="table">
+      <tr>
+        <th>Stay ID</th>
+        <th>Studio ID</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+        <th>Number of days</th>
+        <th>Price/month</th>
+        <th>Tenant email</th>
+        <th>Stay info</th>
+      </tr>
+      
+      <% @stays.each do |stay| %>
+        <tr>
+          <td><%= stay.id %></td>
+          <td><%= stay.studio.id %></td>
+          <td><%= stay.start_date.strftime("%a, %d %b %Y")%></td>
+          <td><%= stay.end_date.strftime("%a, %d %b %Y")%></td>
+          <td><%= (stay.end_date - stay.start_date).to_i %></td>
+          <td><%= stay.studio.price %> €</td>
+          <td><%= stay.tenant.email %></td>
+          <td><%= link_to  "See more", stay_path(stay.id) %></td>
+        </tr>
+      <% end %>
+    </table>
+    </div>

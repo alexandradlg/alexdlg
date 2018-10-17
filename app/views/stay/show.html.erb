@@ -1,0 +1,16 @@
+<h1>Related payments</h1>
+<div class="container">
+    <table class="table">
+      <tr>
+        <th>Month</th>
+        <th>Amount</th>
+      </tr>
+      <% @due_per_month.each do |month, amount| %>
+        <tr>
+          <td><%= month %></td>
+          <td><%= amount %> €</td>
+        </tr>
+        <% end %>
+    </table>
+    </div>
+  <p><%= link_to  "Index of stays", root_path %></p>
