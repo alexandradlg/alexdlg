@@ -16,6 +16,17 @@ class Stay < ApplicationRecord
   validates_with BookingValidator
   belongs_to :studio
   belongs_to :tenant
+  has_many :payments, dependent: :destroy
   validates :start_date, presence: true
   validates :end_date, presence: true
+  after_create :create_waiting_payments
+
+  def create_waiting_payments
+    stay = Stay.last
+    (stay.start_date..stay.end_date).group_by(&:beginning_of_month).map { |start, month|
+      Payment.create(stay_id: stay.id,
+                     price: (stay.studio.price * month.count) / Time.days_in_month(start.month, start.year),
+                     month: start.to_date)
+    }
+  end
 end

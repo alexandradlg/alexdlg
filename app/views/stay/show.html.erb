@@ -4,11 +4,17 @@
       <tr>
         <th>Month</th>
         <th>Amount</th>
+        <th>Payment Status</th>
       </tr>
-      <% @due_per_month.each do |month, amount| %>
+      <% @payments.each do |payment| %>
         <tr>
-          <td><%= month %></td>
-          <td><%= amount %> €</td>
+          <td><%= payment.month.strftime("%B %Y" ) %></td>
+          <td><%= payment.price %> €</td>
+          <% if payment.guid == nil %>
+          <td><%= button_to "To be paid", update_payment_status_path(payment), :method => :get, :class => 'btn btn-primary' %></td>
+          <% else %>
+          <td>Already paid</td>
+          <% end %>
         </tr>
         <% end %>
     </table>

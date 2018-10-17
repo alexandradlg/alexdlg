@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_16_090548) do
+ActiveRecord::Schema.define(version: 2018_10_17_081731) do
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "stay_id"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "EUR", null: false
+    t.date "month"
+    t.string "guid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stay_id"], name: "index_payments_on_stay_id"
+  end
 
   create_table "stays", force: :cascade do |t|
     t.date "start_date"

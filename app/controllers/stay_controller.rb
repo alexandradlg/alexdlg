@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class StayController < ApplicationController
   def index
     @stays = Stay.all
@@ -5,9 +7,14 @@ class StayController < ApplicationController
 
   def show
     @stay = Stay.find(params[:id])
-    @due_per_month = {}
-    (@stay.start_date..@stay.end_date).group_by(&:beginning_of_month).map { |start, month|
-      @due_per_month[start.strftime("%b %Y")] = (@stay.studio.price * month.count) / Time.days_in_month(start.month, start.year)
-    }
+    @payments = @stay.payments
+  end
+
+  def update_payment_status
+    @response = RestClient.get 'https://www.uuidgenerator.net/api/guid'
+    payment = Payment.find(params[:id])
+    payment.update(guid: @response)
+    payment.save ? flash[:success] = "Payment validated :)" : flash[:alert] = "Payment invalid"
+    redirect_to stay_path(Stay.find(payment.stay.id))
   end
 end
